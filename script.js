@@ -33,7 +33,7 @@ const colors = [
 let fetchPics = () => {
     const apiBaseURL = "https://api.giphy.com/v1/gifs/random";
     const apiKey = 'i012JkVN9Yo5Ol79YdCFCA0zHzoZyK9u';
-    const tag = "cats";
+    const tag = "cat";
     const rating = "g";
     gifDiv.innerHTML = '';
 

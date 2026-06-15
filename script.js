@@ -1,7 +1,5 @@
 const gifDiv = document.querySelector(".gifDiv")
 const screen = document.querySelector('.container')
-const loader = document.createElement('div');
-loader.classList.add("loader");
 const titleText = document.querySelector('.headerText')
 const newGifButton = document.querySelector(".newGifBtn")
 const overlay = document.querySelector('.overlay')
@@ -46,7 +44,6 @@ let fetchPics = () => {
         "&rating=" +
         rating
     )
-    gifDiv.appendChild(loader);
     fetch(apiURL)
         .then(
             (response) =>
@@ -61,7 +58,6 @@ let fetchPics = () => {
             gifPreview.className = 'preview'
             gifPreview.setAttribute('src', `${gifPreviewURL}`)
             gifElement.setAttribute('src', `${gifURL}`)
-            gifDiv.replaceChild(gifPreview, loader)
             gifElement.onload = () => {
                 titleText.textContent = title
                 gifDiv.replaceChild(gifElement, gifPreview);

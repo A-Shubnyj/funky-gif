@@ -58,9 +58,12 @@ let fetchPics = () => {
             gifPreview.className = 'preview'
             gifPreview.setAttribute('src', `${gifPreviewURL}`)
             gifElement.setAttribute('src', `${gifURL}`)
+            gifDiv.innerHTML = '';
+            gifDiv.appendChild(gifPreview); 
             gifElement.onload = () => {
                 titleText.textContent = title
-                gifDiv.replaceChild(gifElement, gifPreview);
+                gifDiv.innerHTML = '';
+                gifDiv.appendChild(gifElement);
                 newGifButton.classList.remove("onclic");
                 newGifButton.classList.add("validate");
                 setTimeout(() => {
@@ -85,18 +88,19 @@ newGifButton.addEventListener('click', () => {
 
 let fullScreen = () => {
     let FSgif = new Image();
-    if (gifElement.hasAttribute('src') == true) {
+    if (gifElement.hasAttribute('src')) {
         FSgif.setAttribute('src', gifElement.getAttribute('src'));
         FSgif.classList.add('fullscreen')
         overlay.style.display = 'flex'
         overlay.style.justifyContent = "space-evenly"
         overlay.appendChild(FSgif)
-        overlay.addEventListener('click', () => {
-            overlay.style.display = 'none'
-            overlay.removeChild(FSgif)
-        })
     }
 }
+overlay.addEventListener('click', () => {
+        overlay.style.display = 'none'
+        overlay.innerHTML=''
+        })
+
 gifDiv.addEventListener('click', () => {
     if (gifElement.complete == true) {
         fullScreen()
